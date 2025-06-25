@@ -10,6 +10,17 @@ const tmdbApi = axios.create({
   },
 });
 
+export const getPopularMovie = async () => {
+  try {
+    const res = await tmdbApi.get(
+      "/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc"
+    );
+    return res.data;
+  } catch (error) {
+    console.log("Fail to fetch from tmdb: ", error);
+  }
+};
+
 export const searchMovie = async (query) => {
   try {
     const res = await tmdbApi.get("/search/movie", { params: { query } });
@@ -27,6 +38,32 @@ export const getMovieDetailsById = async (movieId) => {
     return res.data;
   } catch (error) {
     console.log("Fail to fetch details", error);
+    throw error;
+  }
+};
+
+export const getTrailerById = async (movieId) => {
+  try {
+    const res = await tmdbApi.get(`/movie/${movieId}/videos`);
+    console.log("res:", res);
+    const trailers = res.data.results;
+    console.log("results");
+    const trailer = trailers.find(
+      (vid) => vid.site === "YouTube" && vid.type === "Trailer"
+    );
+    return trailer ? `https://www.youtube.com/watch?v=${trailer.key}` : null;
+  } catch (error) {
+    console.log("Fail to fetch trailer link:", error);
+    return null;
+  }
+};
+
+export const getSimilarMovies = async (movieId) => {
+  try {
+    const res = await tmdbApi.get(`/movie/${movieId}/similar`);
+    return res.data.results;
+  } catch (error) {
+    console.log("Fail to fetch similar movies:", error);
   }
 };
 
