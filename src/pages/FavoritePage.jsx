@@ -22,7 +22,7 @@ const FavoritePage = ({ favoriteList, setFavoriteList }) => {
       );
       setMovies(results);
     } catch (error) {
-      setError("Failed to Load Favorite List");
+      setError("Failed to Load Favorite List:", error);
       setMovies([]);
     } finally {
       setIsLoading(false);
@@ -38,7 +38,7 @@ const FavoritePage = ({ favoriteList, setFavoriteList }) => {
   }, [favoriteList]);
 
   return (
-    <div>
+    <div className="favorite-page">
       {isLoading && <Loading />}
 
       {error && !isLoading && <Error message={error} />}

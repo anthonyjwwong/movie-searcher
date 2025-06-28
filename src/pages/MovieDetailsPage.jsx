@@ -31,13 +31,10 @@ const MovieDetailsPage = ({ favoriteList, setFavoriteList }) => {
       setError(null);
       const res = await getMovieDetailsById(id);
       setMovie(res);
-      console.log("Full movie response:", res);
-      console.log("Credits:", res.credits);
-      const trailer = await getTrailerById(id);
+      const trailer = await getTrailerById(id); //Movie Trailer
       setTrailerUrl(trailer);
       const similarMovie = await getSimilarMovies(id);
       setSimilarMovies(similarMovie);
-      console.log(similarMovie);
     } catch (err) {
       console.error("Error fetching movie:", err.response?.status, err.message);
       setError("Failed to fetch movie details.");
@@ -64,28 +61,32 @@ const MovieDetailsPage = ({ favoriteList, setFavoriteList }) => {
 
   if (isLoading) {
     return (
-      <div className="movie-detail-page">
-        <Link to="/">
-          <button className="back-button">
-            <ArrowLeft size={14} />
-            Back to search
-          </button>
-        </Link>
-        <Loading />
+      <div className="movie-detail-container">
+        <div className="movie-detail-page">
+          <Link to="/">
+            <button className="back-button">
+              <ArrowLeft size={14} />
+              Back to search
+            </button>
+          </Link>
+          <Loading />
+        </div>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="movie-detail-page">
-        <Link to="/">
-          <button className="back-button">
-            <ArrowLeft size={14} />
-            Back to search
-          </button>
-        </Link>
-        <Error message={error} onRetry={() => findMovieDetails(id)} />
+      <div className="movie-detail-container">
+        <div className="movie-detail-page">
+          <Link to="/">
+            <button className="back-button">
+              <ArrowLeft size={14} />
+              Back to search
+            </button>
+          </Link>
+          <Error message={error} onRetry={() => findMovieDetails(id)} />
+        </div>
       </div>
     );
   }
@@ -95,31 +96,33 @@ const MovieDetailsPage = ({ favoriteList, setFavoriteList }) => {
   }
 
   return (
-    <div className="movie-detail-page">
-      <Link to="/">
-        <button className="back-button">
-          <ArrowLeft size={14} />
-          Back to search
-        </button>
-      </Link>
+    <div className="movie-detail-container">
+      <div className="movie-detail-page">
+        <Link to="/">
+          <button className="back-button">
+            <ArrowLeft size={14} />
+            Back to search
+          </button>
+        </Link>
 
-      <MovieHeader movie={movie} />
+        <MovieHeader movie={movie} />
 
-      <MovieActions
-        trailerUrl={trailerUrl}
-        handleTrailerClick={handleTrailerClick}
-        title={movie.title}
-        handleFavoriteClick={handleFavoriteClick}
-        favoriteList={favoriteList}
-        id={id}
-      />
+        <MovieActions
+          trailerUrl={trailerUrl}
+          handleTrailerClick={handleTrailerClick}
+          title={movie.title}
+          handleFavoriteClick={handleFavoriteClick}
+          favoriteList={favoriteList}
+          id={id}
+        />
 
-      <div className="movie-details-description">
-        <p>{movie.overview}</p>
+        <div className="movie-details-description">
+          <p>{movie.overview}</p>
+        </div>
+
+        <MovieCastSection cast={movie.credits.cast} />
+        <SimilarMovie similarMovies={similarMovies} />
       </div>
-
-      <MovieCastSection cast={movie.credits.cast} />
-      <SimilarMovie similarMovies={similarMovies} />
     </div>
   );
 };

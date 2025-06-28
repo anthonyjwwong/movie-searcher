@@ -6,6 +6,15 @@ import HomePage from "./pages/HomePage";
 import MovieDetailsPage from "./pages/MovieDetailsPage";
 
 function App() {
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    document.documentElement.setAttribute(
+      "data-theme",
+      isDark ? "dark" : "light"
+    );
+  }, [isDark]);
+
   const [favoriteList, setFavoriteList] = useState(() => {
     return JSON.parse(localStorage.getItem("favoriteList")) || [];
   });
@@ -20,7 +29,11 @@ function App() {
 
   return (
     <div>
-      <Navbar favoriteList={favoriteList} />
+      <Navbar
+        favoriteList={favoriteList}
+        isDark={isDark}
+        setIsDark={setIsDark}
+      />
 
       <Routes>
         <Route

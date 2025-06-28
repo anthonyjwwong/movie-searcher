@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from "react";
 import { Search } from "lucide-react";
 const SearchBar = ({ movieQuery, onChange, handleSubmit }) => {
   return (

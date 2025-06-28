@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation, Link } from "react-router-dom";
 
-const Navbar = ({ favoriteList }) => {
+const Navbar = ({ favoriteList, isDark, setIsDark }) => {
   const location = useLocation();
 
   return (
@@ -28,6 +28,13 @@ const Navbar = ({ favoriteList }) => {
           >
             Favorites ({favoriteList.length})
           </Link>
+
+          <button
+            className="light-dark-button"
+            onClick={() => setIsDark(!isDark)}
+          >
+            {isDark ? "light Mode" : "dark Mode"}
+          </button>
         </div>
       </div>
     </nav>

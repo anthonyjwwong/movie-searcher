@@ -10,20 +10,22 @@ const tmdbApi = axios.create({
   },
 });
 
-export const getPopularMovie = async () => {
+export const getPopularMovie = async (page = 1) => {
   try {
     const res = await tmdbApi.get(
-      "/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc"
+      `/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc`
     );
+
     return res.data;
   } catch (error) {
     console.log("Fail to fetch from tmdb: ", error);
   }
 };
 
-export const searchMovie = async (query) => {
+export const searchMovie = async (query, page = 1) => {
   try {
-    const res = await tmdbApi.get("/search/movie", { params: { query } });
+    const res = await tmdbApi.get("/search/movie", { params: { query, page } });
+
     return res.data;
   } catch (error) {
     console.log("Fail to fetch from tmdb: ", error);
@@ -35,6 +37,7 @@ export const getMovieDetailsById = async (movieId) => {
     const res = await tmdbApi.get(`/movie/${movieId}`, {
       params: { append_to_response: "credits,videos" },
     });
+
     return res.data;
   } catch (error) {
     console.log("Fail to fetch details", error);
@@ -45,9 +48,9 @@ export const getMovieDetailsById = async (movieId) => {
 export const getTrailerById = async (movieId) => {
   try {
     const res = await tmdbApi.get(`/movie/${movieId}/videos`);
-    console.log("res:", res);
+
     const trailers = res.data.results;
-    console.log("results");
+
     const trailer = trailers.find(
       (vid) => vid.site === "YouTube" && vid.type === "Trailer"
     );
@@ -67,4 +70,36 @@ export const getSimilarMovies = async (movieId) => {
   }
 };
 
+export const getAllGenres = async () => {
+  try {
+    const res = await tmdbApi.get(`/genre/movie/list`);
+
+    return res.data.genres;
+  } catch (error) {
+    console.log("Fail to fetch genre:", error);
+  }
+};
+
+export const searchWithFilters = async (filters) => {
+  try {
+    const res = await tmdbApi.get(`/discover/movie`, {
+      params: {
+        with_genres: filters.genreId,
+        "primary_release_date.gte": filters.yearFrom
+          ? `${filters.yearFrom}-01-01`
+          : undefined,
+        "primary_release_date.lte": filters.yearTo
+          ? `${filters.yearTo}-12-31`
+          : undefined,
+        "vote_average.gte": filters.minRating,
+        sort_by: filters.sortBy || "popularity.desc",
+        page: filters.page || 1,
+      },
+    });
+
+    return res.data;
+  } catch (error) {
+    console.log("Fail to fetch movie:", error);
+  }
+};
 export default tmdbApi;
