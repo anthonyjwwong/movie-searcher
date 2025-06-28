@@ -6,29 +6,27 @@
 }
 
 :root {
-  /* Light mode (default) */
-  --bg-primary: #ffffff; /*BACKGROUND*/
+  --bg-primary: #ffffff;
   --bg-secondary: #f8f9fa;
-  --bg-card: #ffffff; /* MOVIE CARD BG*/
-  --hero-primary: #2c3e50; /* HERO H5 TEXT*/
-  --search-input: #ffffff; /* SEARCH INPUT*/
+  --bg-card: #ffffff;
+  --hero-primary: #2c3e50;
+  --search-input: #ffffff;
   --text-primary: #333333;
   --text-secondary: #666666;
-  --border-color: #ddd; /*Border*/
-  --filter-bg: #f8f9fa; /*FILTER */
+  --border-color: #ddd;
+  --filter-bg: #f8f9fa;
 }
 
 [data-theme="dark"] {
-  /* Dark mode overrides */
-  --bg-primary: #121212; /*BACKGROUND*/
+  --bg-primary: #121212;
   --bg-secondary: #2d2d2d;
-  --bg-card: #1e1e1e; /* MOVIE CARD BG*/
-  --hero-primary: #fff; /* HERO H5 TEXT*/
-  --search-input: #3a3a3a; /* SEARCH INPUT*/
+  --bg-card: #1e1e1e;
+  --hero-primary: #fff;
+  --search-input: #3a3a3a;
   --text-primary: #ffffff;
   --text-secondary: #b3b3b3;
-  --border-color: #444444; /*Border*/
-  --filter-bg: #2d2d2d; /*FILTER */
+  --border-color: #444444;
+  --filter-bg: #2d2d2d;
 }
 a {
   text-decoration: none;
@@ -79,8 +77,8 @@ a {
 
 .container {
   max-width: 1200px;
-  margin: 0 auto; /* centers it */
-  width: 100%; /* allows responsiveness */
+  margin: 0 auto;
+  width: 100%;
 }
 
 /* Logo section */
@@ -631,12 +629,6 @@ a {
   }
 }
 
-@media (min-width: 768px) {
-}
-
-@media (min-width: 900px) {
-}
-
 @media (min-width: 1100px) {
   .cast-h5 {
     max-width: 1000px;
@@ -838,7 +830,7 @@ input:focus {
 
 .sort-container {
   margin-left: auto;
-  margin-right: auto; /* optional: centers it horizontally if needed */
+  margin-right: auto;
   text-align: right;
   width: 90%;
   max-width: 890px;

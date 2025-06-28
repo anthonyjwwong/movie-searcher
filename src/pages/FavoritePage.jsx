@@ -5,9 +5,6 @@ import Loading from "../components/Loading";
 import Error from "../components/Error";
 
 const FavoritePage = ({ favoriteList, setFavoriteList }) => {
-  //List of ID of favorite
-  //1. Get the movie details
-  //2. Get the details of movie using
   const [movies, setMovies] = useState([]);
 
   const [isLoading, setIsLoading] = useState(false);
