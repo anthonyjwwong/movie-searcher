@@ -2,7 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Plus } from "lucide-react";
 import { getAllGenres } from "../services/tmdbApi";
 
-const FilterBar = ({ filters, handleChange, handleApplyFilter }) => {
+const FilterBar = ({
+  filters,
+  handleChange,
+  handleApplyFilter,
+  clearAllFilters,
+}) => {
   const [showFilter, setShowFilter] = useState(false);
   const [genres, setGenres] = useState([]);
 
@@ -90,12 +95,15 @@ const FilterBar = ({ filters, handleChange, handleApplyFilter }) => {
               ))}
             </select>
           </div>
-          <button
-            className="apply-filter-button"
-            onClick={() => handleApplyFilter(1)}
-          >
-            Apply Filters
-          </button>
+          <div className="filter-button-container">
+            <button
+              className="apply-filter-button"
+              onClick={() => handleApplyFilter(1)}
+            >
+              Apply Filters
+            </button>
+            <button onClick={() => clearAllFilters()}>Clear All Filters</button>
+          </div>
         </div>
       )}
     </div>

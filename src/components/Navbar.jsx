@@ -33,7 +33,7 @@ const Navbar = ({ favoriteList, isDark, setIsDark }) => {
             className="light-dark-button"
             onClick={() => setIsDark(!isDark)}
           >
-            {isDark ? "light Mode" : "dark Mode"}
+            {isDark ? "Light" : "Dark"}
           </button>
         </div>
       </div>

@@ -195,6 +195,23 @@ const HomePage = ({ favoriteList, setFavoriteList }) => {
     e.preventDefault();
   };
 
+  const clearAllFilters = () => {
+    setFilters({
+      genreId: "",
+      yearFrom: "",
+      yearTo: "",
+      minRating: "",
+      sortBy: "popularity.desc",
+      page: 1,
+    });
+
+    setCurrentView("popular");
+    setPage(1);
+    setMovieList([]);
+    setMovieQuery("");
+
+    loadPopularMovies(1);
+  };
   return (
     <main className="home-page">
       <div className="hero-section">
@@ -208,6 +225,7 @@ const HomePage = ({ favoriteList, setFavoriteList }) => {
       </div>
       <div className="filter">
         <FilterBar
+          clearAllFilters={clearAllFilters}
           handleChange={handleChange}
           filters={filters}
           setFilters={setFilters}

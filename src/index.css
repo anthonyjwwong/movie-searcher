@@ -57,8 +57,15 @@ a {
   border: 1px solid white;
   border-radius: 1rem;
   color: white;
-  padding: 0.4rem 0.8rem;
+  padding: 0.1rem 0.4rem;
+  font-size: 0.7rem;
   cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .light-dark-button {
+    padding: 0.2rem 0.8rem;
+  }
 }
 
 .navbar {
@@ -734,7 +741,8 @@ Favorite Page
 
 .no-fav-msg {
   text-align: center;
-  margin-top: 5rem;
+  padding-top: 5rem;
+  color: var(--text-primary);
 }
 @media (min-width: 768px) {
   .favorite-container {
@@ -859,4 +867,14 @@ input:focus {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   background: var(--bg-secondary);
   color: var(--text-secondary);
+}
+
+.filter-button-container {
+  margin: 0 auto;
+  gap: 1rem;
+  display: flex;
+}
+
+.filter-button-container button {
+  padding: 0.5rem 0.5rem;
 }
