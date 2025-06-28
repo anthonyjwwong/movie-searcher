@@ -2,12 +2,16 @@
 
 A simple React frontend application to search and browse movies using [TMDB API](https://www.themoviedb.org/documentation/api). The app features client-side routing with React Router and allows users to view movie details and manage favorites.
 
+## Live Demo
+[View Live App](https://movie-searcher-pf.netlify.app/)
+
 ## Features
 
 - Search movies by title
 - View detailed movie information including cast and videos
 - Navigate between pages with React Router (`react-router-dom`)
 - Save favorite movies (local state or localStorage)
+- Filter and Sort option by cateogries
 
 ## Tech Stack
 
@@ -15,7 +19,8 @@ A simple React frontend application to search and browse movies using [TMDB API]
 - React Router DOM
 - Axios for API calls
 - TMDB API for movie data
-
+- Deployed on netlify
+  
 ## Getting Started
 
 ### Prerequisites
